@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GameManager : MonoBehaviour
     public FollowCam cam;
     public Character heart;
     public Character coin;
-    public TradingPlatform tradingPlatform;
+    public TradingPlatform[] tradingPlatforms;
     public Goal goal;
 
     public Slider heartEnergy;
@@ -98,9 +99,9 @@ public class GameManager : MonoBehaviour
 
         if (heart.HasKey && coin.HasKey)
         {
-            if (tradingPlatform != null)
+            foreach (TradingPlatform tp in tradingPlatforms)
             {
-                tradingPlatform.gameObject.SetActive(true);
+                tp.gameObject.SetActive(true);
             }
 
             goal.gameObject.SetActive(true);
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (tradingPlatform != null && tradingPlatform.BothIn)
+            if (tradingPlatforms.Any(tp => tp.BothIn))
             {
                 ExchangePickups();
             }
@@ -128,8 +129,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        heartEnergy.value = heart.CurrentHealth / 100;
-        coinEnergy.value = coin.CurrentHealth / 100;
+        heartEnergy.value = heart.CurrentHealth / heart.startHealth;
+        coinEnergy.value = coin.CurrentHealth / coin.startHealth;
 
         heartsCollected.text = coin.PickedUpItems.ToString();
         coinsCollected.text = heart.PickedUpItems.ToString();

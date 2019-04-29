@@ -27,13 +27,15 @@ public class LevelManager : MonoBehaviour
     public bool HasNextLevel()
     {
         CurrentLevel++;
-
-        Debug.Log(CurrentLevel);
-        Debug.Log(levels.Length);
         return CurrentLevel < levels.Length;
     }
 
     public string GetNextLevelName()
+    {
+        return levels[CurrentLevel];
+    }
+
+    public string GetCurrentLevelName()
     {
         return levels[CurrentLevel];
     }

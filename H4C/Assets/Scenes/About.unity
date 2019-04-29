@@ -372,7 +372,7 @@ RectTransform:
   - {fileID: 1923095138}
   - {fileID: 767765214}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1126,7 +1126,7 @@ RectTransform:
   - {fileID: 1954417713}
   - {fileID: 581422793}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1333,7 +1333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1686917854
 GameObject:
@@ -1399,7 +1399,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1715450389
 GameObject:
@@ -1830,15 +1830,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '
-
-    Movement: WASD
-
-    Jump: Space
-
-    Change character: Left Mouse
-
-    Exchange Items: Left Mouse (only on green platform)'
+  m_text: "\nMove characters: WASD\nJump: Space\r\nChange characters: Left Mouse\r\nExchange
+    items: Left Mouse (only on green platform)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1972,8 +1965,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -14.75}
-  m_SizeDelta: {x: 967, y: 367.2}
+  m_AnchoredPosition: {x: 2.3, y: -31.3}
+  m_SizeDelta: {x: 861.5, y: 334.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1954417714
 MonoBehaviour:
@@ -1995,25 +1988,15 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Your goal is to reach the red platform with both characters.
-
-    The Heart character looses hearts over time and can only collect coins.
-
-    The Coin character looses coins over time and can only collect hearts.
-
-
-    To fill up the energy, you have to collect one key with each character and move
-    with both to the green platform. There you can exchange the collected items.
-
-
-    The red platform is only visible, when both characters have collected a key.
-
-
-    The level is completed as soon as both characters reached the red platform.
-
-
-    The game is over, when either one character runs our of energy, a character falls
-    down or if a character collects both keys.'
+  m_text: "In this game you control two characters \u2013 a Heart and a Coin.\r\n\r\nYour
+    goal is to reach the red platform with both characters.\r\n\r\nThe Heart character
+    loses hearts over time and can only collect coins. The Coin character loses coins
+    over time and can only collect hearts. To fill up the energy, you have to collect
+    one key with each character and move with both to a green platform. There you
+    can exchange the collected items.\r\n\r\nThe red platform is only visible, when
+    both characters have collected a key.\r\n\r\nThe level is completed as soon as
+    both characters reached the red platform.\r\n\r\nThe game is over, when one character
+    falls down, runs out of energy or collects both keys."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2041,8 +2024,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2082,12 +2065,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1954417714}
-    characterCount: 642
+    characterCount: 677
     spriteCount: 0
-    spaceCount: 116
-    wordCount: 113
+    spaceCount: 124
+    wordCount: 119
     linkCount: 0
-    lineCount: 13
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2113,6 +2096,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1954417712}
   m_CullTransparentMesh: 0
+--- !u!1001 &1991951542
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8017531925896554488, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8017531925896554494, guid: 135383c495f182f4190127848f35042a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 135383c495f182f4190127848f35042a, type: 3}
 --- !u!1 &2066610772
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,5 +2206,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

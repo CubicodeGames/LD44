@@ -5,7 +5,7 @@ public class ButtonController : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level1");
     }
 
     public void About()
@@ -22,6 +22,11 @@ public class ButtonController : MonoBehaviour
     {
         string nextLevelName = LevelManager.Instance.GetNextLevelName();
         SceneManager.LoadScene(nextLevelName);
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(LevelManager.Instance.GetCurrentLevelName());
     }
 
     public void Continue()
