@@ -6,12 +6,11 @@ public class Character : MonoBehaviour
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
 
-    [HideInInspector] public bool active;
+    public bool Active { get; set; }
+    public bool HasKey { get; private set; }
+    public int PickedUpItems { get; private set; }
+    public int CurrentHealth { get; private set; }
 
-    public bool HasKey { get; set; }
-
-    private int _currentHealth;
-    private int _pickedUpItems;    
     private BoxCollider2D _box;
     private Rigidbody2D _body;
 
@@ -19,15 +18,15 @@ public class Character : MonoBehaviour
     void Start()
     {
         HasKey = false;
-        _currentHealth = startHealth;
-        _pickedUpItems = 0;
+        CurrentHealth = startHealth;
+        PickedUpItems = 0;
         _box = GetComponent<BoxCollider2D>();
         _body = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (!active) return;
+        if (!Active) return;
 
         float deltaX = Input.GetAxis("Horizontal") * speed;
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
@@ -54,7 +53,7 @@ public class Character : MonoBehaviour
 
     public void Pickup()
     {
-        _pickedUpItems++;
+        PickedUpItems++;
     }
 
     public void PickupKey()
