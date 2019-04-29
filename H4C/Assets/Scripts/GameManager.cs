@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,12 +19,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI coinsCollected;
     public Image key1;
     public Image key2;
+    public Canvas pauseMenu;
 
     public bool IsGameOver { get; private set; }
     public bool IsLevelComplete { get; private set; }
+    public string GameOverReason { get; private set; }
 
     private Color _key1Color;
     private Color _key2Color;
+    public bool _isPaused;
 
     void Start()
     {
@@ -37,7 +40,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        _isPaused = false;
         IsGameOver = false;
         IsLevelComplete = false;
 
@@ -58,6 +61,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!_isPaused)
+            {
+                Time.timeScale = 0;
+                pauseMenu.gameObject.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                pauseMenu.gameObject.SetActive(false);
+            }
+
+            _isPaused = !_isPaused;
+        }
+
         if (goal.BothIn)
         {
             LevelComplete();
@@ -77,12 +96,17 @@ public class GameManager : MonoBehaviour
 
         if (heart.HasKey && coin.HasKey)
         {
-            tradingPlatform.gameObject.SetActive(true);
+            if (tradingPlatform != null)
+            {
+                tradingPlatform.gameObject.SetActive(true);
+            }
+
+            goal.gameObject.SetActive(true);
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (tradingPlatform.BothIn)
+            if (tradingPlatform != null && tradingPlatform.BothIn)
             {
                 ExchangePickups();
                 // Level complete?
@@ -125,7 +149,9 @@ public class GameManager : MonoBehaviour
     public void GameOver(string reason)
     {
         IsGameOver = true;
+        GameOverReason = reason;
         Debug.Log($"GAME OVER: {reason}");
+        SceneManager.LoadScene("GameOver");
     }  
     
     public void LevelComplete()
@@ -134,6 +160,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("LEVEL COMPLETE");
             IsLevelComplete = true;
+            SceneManager.LoadScene("LevelComplete");
         }
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        pauseMenu.gameObject.SetActive(false);
+        _isPaused = false;
     }
 }
