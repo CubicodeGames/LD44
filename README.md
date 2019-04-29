@@ -1,50 +1,25 @@
-# LD44
-Stuff for Ludum Dare 44
+# Coins for Hearts
+Game developed for Ludum Dare 44
 ***
+## The Game
 
-Title: Coins for Hearts
-Shortname: C4H
+In this game you control two characters – a Heart and a Coin.
 
-Idea:
-Player controlls two characters.
+Your goal is to reach the red platform with both characters.
 
+The Heart character loses hearts over time and can only collect coins.
+The Coin character loses coins over time and can only collect hearts.
+To fill up the energy, you have to collect one key with each character and move with both to a green platform. There you can exchange the collected items.
 
-Caharacter 1:
+The red platform is only visible, when both characters have collected a key.
 
-- Heart
-- Starts with x hearts which are reduced over time.
-- Can only collect coins.
+The level is completed as soon as both characters reached the red platform.
 
-Character 2:
-
-- Coin
-- Starts with x coins which are reduced over time.
-- only collect hearts.
+The game is over, when one character falls down, runs out of energy or collects both keys.
 
 
-Gameplay:
-
-- Heart collects coins, coin collects hearts.
-- In each level two keys are available. Each character has to collect one (it is possible to collect two with one character but then the level can not be completed).
-- As soon as each character has one key they can both be moved into a special spot where they can exchange coins for hearts to fill up their energy.
-
-
-Game is lost when:
-
-1. One character has no energy left
-2. A character touches an enemy
-3. A character moves to far away from the other (the other is out of the screen)
-
-
-Game is won when:
-
-1. All levels are completed.
-
-
-Scenes:
-
-1. Main
-2. Levels
-3. Game over
-4. Game won
-5. How to play
+## Controls
+Move characters: WASD
+Jump: Space
+Change characters: Left Mouse
+Exchange items: Left Mouse (only on green platform)
