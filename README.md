@@ -19,7 +19,7 @@ The game is over, when one character falls down, runs out of energy or collects 
 
 
 ## Controls
-Move characters: WASD
-Jump: Space
-Change characters: Left Mouse
-Exchange items: Left Mouse (only on green platform)
+* Move characters: WASD
+* Jump: Space
+* Change characters: Left Mouse
+* Exchange items: Left Mouse (only on green platform)
