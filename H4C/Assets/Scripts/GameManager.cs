@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,13 +10,19 @@ public class GameManager : MonoBehaviour
     public FollowCam cam;
     public Character heart;
     public Character coin;
+    public TradingPlatform tradingPlatform;
     public Goal goal;
 
+    public Slider heartEnergy;
+    public Slider coinEnergy;
     public TextMeshProUGUI heartsCollected;
     public TextMeshProUGUI coinsCollected;
     public Image key1;
     public Image key2;
-    
+
+    public bool IsGameOver { get; private set; }
+    public bool IsLevelComplete { get; private set; }
+
     private Color _key1Color;
     private Color _key2Color;
 
@@ -31,10 +38,16 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        IsGameOver = false;
+        IsLevelComplete = false;
+
         heart.Active = true;
         coin.Active = false;
 
         cam.target = heart.transform;
+
+        heartEnergy.value = 1;
+        coinEnergy.value = 1;
 
         heartsCollected.text = "0";
         coinsCollected.text = "0";
@@ -45,6 +58,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (goal.BothIn)
+        {
+            LevelComplete();
+        }
+
         if (heart.HasKey)
         {
             _key1Color = new Color(_key1Color.r, _key1Color.g, _key1Color.g, 255);
@@ -59,14 +77,14 @@ public class GameManager : MonoBehaviour
 
         if (heart.HasKey && coin.HasKey)
         {
-            goal.gameObject.SetActive(true);
+            tradingPlatform.gameObject.SetActive(true);
         }
 
         if (Input.GetButtonDown("Fire1"))
         {
-            if (goal.BothIn)
+            if (tradingPlatform.BothIn)
             {
-                // Exchange pickups
+                ExchangePickups();
                 // Level complete?
             }
             else
@@ -85,12 +103,37 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        heartEnergy.value = heart.CurrentHealth / 100;
+        coinEnergy.value = coin.CurrentHealth / 100;
+
         heartsCollected.text = coin.PickedUpItems.ToString();
         coinsCollected.text = heart.PickedUpItems.ToString();
     }
 
-    public void GameOver()
+    private void ExchangePickups()
     {
-        Debug.Log("GAME OVER");
+        int hearts = coin.PickedUpItems;
+        int coins = heart.PickedUpItems;
+
+        heart.AddHealth(hearts);
+        coin.AddHealth(coins);
+
+        heart.RemovePickups(coins);
+        coin.RemovePickups(hearts);
+    }
+
+    public void GameOver(string reason)
+    {
+        IsGameOver = true;
+        Debug.Log($"GAME OVER: {reason}");
+    }  
+    
+    public void LevelComplete()
+    {
+        if (!IsLevelComplete)
+        {
+            Debug.Log("LEVEL COMPLETE");
+            IsLevelComplete = true;
+        }
     }
 }

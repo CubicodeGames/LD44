@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class TradingPlatform : MonoBehaviour
 {
     public bool BothIn
     {
@@ -22,7 +22,7 @@ public class Goal : MonoBehaviour
         else if (other.tag == "Coin")
         {
             _isCoinIn = true;
-        }
+        }        
     }
 
     void OnTriggerExit2D(Collider2D other)

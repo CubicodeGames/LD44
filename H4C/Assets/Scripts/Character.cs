@@ -2,14 +2,15 @@
 
 public class Character : MonoBehaviour
 {
-    public int startHealth = 100;
+    public float startHealth = 100f;
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
+    public float healthDecreaseRate = 1f;
 
     public bool Active { get; set; }
     public bool HasKey { get; private set; }
     public int PickedUpItems { get; private set; }
-    public int CurrentHealth { get; private set; }
+    public float CurrentHealth { get; private set; }
 
     private BoxCollider2D _box;
     private Rigidbody2D _body;
@@ -26,8 +27,24 @@ public class Character : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsLevelComplete)
+        {
+            return;
+        }
+
+        CurrentHealth -= healthDecreaseRate * Time.deltaTime;
+        if (CurrentHealth <= 0)
+        {
+            GameManager.Instance.GameOver("One character run out of energy");
+        }
+
         if (!Active) return;
 
+        Move();
+    }
+
+    private void Move()
+    {
         float deltaX = Input.GetAxis("Horizontal") * speed;
         Vector2 movement = new Vector2(deltaX, _body.velocity.y);
         _body.velocity = movement;
@@ -64,7 +81,27 @@ public class Character : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.GameOver("You collected two keys with the same Character.");
+        }
+    }
+
+    public void AddHealth(int value)
+    {
+        CurrentHealth += (value * 10);
+
+        if (CurrentHealth > startHealth)
+        {
+            CurrentHealth = startHealth;
+        }
+    }
+
+    public void RemovePickups(int value)
+    {
+        PickedUpItems -= value;
+
+        if (PickedUpItems < 0)
+        {
+            PickedUpItems = 0;
         }
     }
 }
