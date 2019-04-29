@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
     public float speed = 4.5f;
     public float jumpForce = 12.0f;
     public float healthDecreaseRate = 1f;
+    public AudioSource pickupSound;
+    public AudioSource jumpSound;
 
     public bool Active { get; set; }
     public bool HasKey { get; private set; }
@@ -64,12 +66,14 @@ public class Character : MonoBehaviour
         _body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0)) ? 0 : 1;
         if (grounded && Input.GetKeyDown(KeyCode.Space))
         {
+            jumpSound.Play();
             _body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 
     public void Pickup()
     {
+        pickupSound.Play();
         PickedUpItems++;
     }
 
@@ -77,6 +81,7 @@ public class Character : MonoBehaviour
     {
         if (!HasKey)
         {
+            pickupSound.Play();
             HasKey = true;
         }
         else

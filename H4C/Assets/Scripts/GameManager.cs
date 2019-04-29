@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Image key1;
     public Image key2;
     public Canvas pauseMenu;
+    public AudioSource exchangeSound;
 
     public bool IsGameOver { get; private set; }
     public bool IsLevelComplete { get; private set; }
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         _isPaused = false;
         IsGameOver = false;
         IsLevelComplete = false;
@@ -109,7 +111,6 @@ public class GameManager : MonoBehaviour
             if (tradingPlatform != null && tradingPlatform.BothIn)
             {
                 ExchangePickups();
-                // Level complete?
             }
             else
             {
@@ -144,6 +145,8 @@ public class GameManager : MonoBehaviour
 
         heart.RemovePickups(coins);
         coin.RemovePickups(hearts);
+
+        exchangeSound.Play();
     }
 
     public void GameOver(string reason)

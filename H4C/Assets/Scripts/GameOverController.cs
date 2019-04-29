@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameOverController : MonoBehaviour
 {
     public TextMeshProUGUI reason;
+    public AudioSource gameOverSound;
 
     void Start()
     {
